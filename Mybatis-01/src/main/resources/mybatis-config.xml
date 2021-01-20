@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 导入外部文件 -->
+    <properties resource="Druid.properties"/>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+       <!-- <typeAlias type="com.yu.pojo.Userlias="User"/> 给单个类起别名-->
+        <!--直接扫描这个包下的类别名就是类的名字默认小写 也可以在类上添加@Alias("stu")注解进行自定义别名-->
+        <package name="com.yu.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!-- 上面导入了外部配置文件-->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!-- 反射注册每-写一个mapper得在这注册进来不然程序跑不起来 -->
+        <mapper class="com.yu.dao.userMapper"/>
+        <!-- resource是找xml的位置推荐使用 -->
+        <mapper resource="com/yu/dao/userMapper.xml"/>
+        <!--<mapper class="com.yu.dao.userMapper"/> class是找接口 但是前提是mapper的文件和接口同名且在同一个包下-->
+        <!--<package name="com.yu.dao"/> 扫描一个包 和class一样都得是mapper和接口同名且在同一个包下-->
+    </mappers>
+</configuration>

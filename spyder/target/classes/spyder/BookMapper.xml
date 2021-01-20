@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spyder.BookMapper">
+    <insert id="add">
+        insert into book values(#{bookName},#{author})
+    </insert>
+    <insert id="addChina">
+        insert into china values(#{code},#{region})
+    </insert>
+</mapper>

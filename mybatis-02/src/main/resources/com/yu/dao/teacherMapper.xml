@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yu.dao.teacherMapper">
+<select id="getStudent" resultMap="selectTeacherStudent">
+    select student.sid as id,student.sname as name,teacher.tid as tid,teacher.tname as table_name
+    from student as stu,teacher as t
+    where stu.tid=t.tid and tid=#{tid}
+</select>
+<resultMap id="selectTeacherStudent" type="teacher">
+
+</resultMap>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yu.dao.teacherMapper">
+    <select id="getStudent" resultMap="selectTeacherStudent">
+    select sid as id,sname as sname,Tname as tname
+    from student  stu,teacher  t
+    where stu.`tid`=t.`tid` and t.`tid`=#{tid}
+</select>
+    <resultMap id="selectTeacherStudent" type="teacher">
+        <result property="name" column="tname"/>
+        <!-- ofType是指的集合中的泛型的类型 一对多用ofType 多对一用javaType -->
+        <collection property="students" ofType="student">
+            <result property="id" column="id"/>
+            <result property="name" column="sname"/>
+        </collection>
+    </resultMap>
+</mapper>

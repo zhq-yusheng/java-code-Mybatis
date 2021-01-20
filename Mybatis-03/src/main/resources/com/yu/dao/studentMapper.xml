@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yu.dao.studentMapper">
+    <!-- ================ 第一种相当于嵌套查询(子查询) =======================  -->
+    <select id="selectStudent" resultMap="stuFirst">
+        select *  from student
+    </select>
+    <select id="selectTeacher" resultType="teacher">
+        select * from teacher where tid=#{id}
+    </select>
+    <resultMap id="stuFirst" type="student">
+        <!-- javaType 是多对一的一指的是一这方的java实体类 -->
+        <association property="teacher" column="tid" javaType="teacher" select="selectTeacher"/>
+    </resultMap>
+    <!-- ========= 第二种方式 一步到位 ================ -->
+    <select id="selectStudentTwo" resultMap="studentTeacher">
+        select sid id,sname name, Tname tname from student s,teacher t where s.tid=t.tid
+    </select>
+    <resultMap id="studentTeacher" type="student">
+        <result property="sid" column="id"/>
+        <result property="sname" column="name"/>
+        <association property="teacher" javaType="teacher">
+            <result property="Tname" column="tname"/>
+        </association>
+    </resultMap>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yu.dao.userMapper">
+    <resultMap id="mapUser" type="user">
+       <!-- 结果集映射，数据库字段名和java实体类不一致就得使用结果集映射-->
+        <!-- column数据库列名  property java实体类属性名 -->
+        <result column="height" property="heit"/>
+    </resultMap>
+    <select id="selectStudent" resultMap="mapUser">
+    select name,age,height from db1.student;
+    </select>
+    <!--parameterType是接口参数，这里参数是student就给的类全路径，如果是基本类型就可以不用参数直接赋值-->
+    <!--#{name} 是类中对应数据库的字段 ，如果是普通类型就直接用接口方法的形参名字-->
+    <insert id="addStudent" parameterType="user">
+        insert into student(name,age,height) values(#{name},#{age},#{heit})
+    </insert>
+</mapper>

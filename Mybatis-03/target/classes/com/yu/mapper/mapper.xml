@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yu.swing.mapper.AddStudentMapper">
+
+    <insert id="addStudent" parameterType="student">
+        insert into tblemp(sNo,sName,sSex,sQsh,sZw) values(sNo=#{sNo},sName=#{sName},sSex=#{sSex},sQsh=#{sQsh},sZw=#{sZw})
+    </insert>
+</mapper>
